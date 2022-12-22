@@ -1,0 +1,8 @@
+.store {
+    margin-top: 48px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    max-height: 100%;
+    position: relative;
+}

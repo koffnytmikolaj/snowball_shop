@@ -1,0 +1,21 @@
+.button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    min-width: 64px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-color: #633BF5;
+    color: #633BF5;
+    text-align: center;
+    transition: background-color 0.25s;
+}

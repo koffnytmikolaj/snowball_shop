@@ -1,0 +1,6 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 152px;
+    transition: 0.25s all ease-in-out;
+}

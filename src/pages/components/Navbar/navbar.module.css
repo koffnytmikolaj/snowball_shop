@@ -1,0 +1,13 @@
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 10;
+}
+
+.navItems {
+    display: flex;
+    justify-content: center;
+    white-space: wrap;
+}

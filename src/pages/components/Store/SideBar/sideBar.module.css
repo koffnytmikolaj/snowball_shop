@@ -1,0 +1,22 @@
+.bar {
+    position: fixed;
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: row;
+    height: 100%;
+    text-align: left;
+    transform: translate(-152px, 0);
+    transition: transform 0.25s;
+    transition: 0.25s all ease-in-out;
+    z-index: 9;
+    width: 152px;
+}
+
+.bar__shown {
+    transform: translate(0, 0);
+}
+
+.bar h3 {
+    color: white;
+    padding: 16px;
+}

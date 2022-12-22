@@ -1,0 +1,41 @@
+.welcomeCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 48px;
+}
+
+.welcomeCard__text {
+    text-align: left;
+    max-width: calc(40% - 40px);
+    padding: 20px;
+    transition: 0.5s all ease-in-out;
+}
+
+.welcomeCard__text > h1 {
+    color: #2A78DE
+}
+
+.welcomeCard__text > p {
+}
+
+.welcomeCard__text_buttons {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.welcomeCard__text_buttons > button {
+    margin: 0 6px;
+}
+
+.welcomeCard__image {
+    max-width: calc(40% - 40px);
+    padding: 20px;
+    transition: 0.5s all ease-in-out;
+}
+
+.welcomeCard__image > img {
+    width: 100%;
+}
