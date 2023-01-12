@@ -1,56 +1,60 @@
-const translateFromHexToDec = (hex: string): number => {
-    if (hex.length !== 1) throw new Error('Nuber length must be equal to 1!');
-    if (isNaN(Number(hex))) {
-        switch (hex.toUpperCase()) {
-            case 'A': return 10;
-            case 'B': return 11;
-            case 'C': return 12;
-            case 'D': return 13;
-            case 'E': return 14;
-            case 'F': return 15;
-            default: throw new Error('Wrong hex number!');
-        }
-    }
-    return Number(hex);
+import { IColor } from "interfaces/helpers";
+
+const validateHexColor = (color: string): string => (color.length === 1 ? `0${color}` : color);
+
+export const transformColorFromHexToObject = (colorString: string): IColor => {
+  if (colorString[0] !== '#' || (colorString.length !== 7 && colorString.length !== 4))
+    throw Error('Wrong color format!');
+  const color = colorString.slice(1);
+  return {
+    red: parseInt(color.slice(0, 2), 16),
+    green: parseInt(color.slice(2, 4), 16),
+    blue: parseInt(color.slice(4), 16),
+  };
+};
+
+export const transformColorFromObjectToRGBA = (color: IColor, opacity: number = 1): string => {
+  const { red, green, blue } = color;
+  return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
+};
+
+const transformColorFromRGBAToObject = (rgba: string): IColor => {
+    const regexp: RegExp = /^rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(,\s*\d+\.?\d*)?\s*\)$/
+    if (!regexp.test(rgba)) throw new Error('Invalid RGBA!');
+    const rgbaValues: string[] = rgba.slice(rgba.indexOf('(') + 1, rgba.indexOf(')')).split(',')
+    const [red, green, blue, opacity] = rgbaValues;
+    return {
+        red: Number(red), 
+        green: Number(green), 
+        blue: Number(blue),
+        opacity: opacity ? Number(opacity) : undefined,
+    };
 }
 
-const translateFromShortToLongHex = (hash: string) => {
-    let result: string = '';
-    Object.entries(hash).forEach(([_, value]) => {
-        result += value + value;
-    });
-    return result;
+export const transformColorFromRGBAToHex = (rgba: string) => {
+    const color = transformColorFromRGBAToObject(rgba);
+    return transformColorFromObjectToHex(color);
 }
 
-const getRgbValues = (hash: string): number[] => {
-    const result: number[] = [];
-    const numbers = Array.from(hash);
-    let colorValue = 0;
-    Object.entries(numbers).forEach(([index, value]) => {
-        if (Number(index) % 2 === 0) {
-            colorValue += 16 * translateFromHexToDec(value);
-            return;
-        }
-        colorValue += translateFromHexToDec(value);
-        result.push(colorValue);
-        colorValue = 0;
-    });
-    return result;
+export const transformColorFromHexToRGBA = (hex: string, opacity?: number): string => {
+    const color = transformColorFromHexToObject(hex);
+    return transformColorFromObjectToRGBA(color, opacity);
 }
 
-const getRgb = (hash: string): number[] => {
-    switch (hash.length) {
-        case 3:
-            return getRgbValues(translateFromShortToLongHex(hash));
-        case 6:
-            return getRgbValues(hash);
-        default:
-            throw new Error('Wrong HASH length!');
-    }
-}
+export const transformColorFromObjectToHex = (color: IColor): string => {
+  const red = validateHexColor(color.red.toString(16));
+  const green = validateHexColor(color.green.toString(16));
+  const blue = validateHexColor(color.blue.toString(16));
+  return `#${red}${green}${blue}`.toUpperCase();
+};
 
-export const getRgbaFromHash = (hash: string, opacity: number = 1): string => {
-    if (hash[0] !== '#') throw new Error('HASH must start with "#"!');
-    const rgb = getRgb(hash.substring(1));
-    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
-}
+export const getOppositeColor = (color: IColor): IColor => {
+  const { red, green, blue, opacity } = color;
+  const oppositeColor: IColor = {
+    red: 255 - red,
+    green: 255 - green,
+    blue: 255 - blue,
+    opacity,
+  };
+  return oppositeColor;
+};

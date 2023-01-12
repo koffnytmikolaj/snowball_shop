@@ -1,36 +1,33 @@
-import clsx from 'clsx';
-import { useState } from 'react';
-import { getRgbaFromHash } from '../../helpers/colorHelpers';
-import { ButtonVariants } from '../../types/ButtonType';
+import { useCallback, useState } from 'react';
+import { clsx } from 'clsx';
+import { transformColorFromHexToRGBA } from 'helpers/colorHelpers';
+import { ButtonProps } from 'interfaces/components';
+import { ButtonVariants } from 'enums/Button';
 import style from './button.module.css'
 
-interface IButton {
-    children: JSX.Element;
-    className?: string;
-    color?: string;
-    variant?: typeof ButtonVariants.FILLED | typeof ButtonVariants.OUTLINED;
-    onClick?: () => void;
-}
-
-export default function Button(props: IButton) {
+export default function Button(props: ButtonProps) {
     const { children, className, color = '#633BF5', variant = ButtonVariants.FILLED, onClick } = props;
     const [clicked, setClicked] = useState<boolean>(false);
     const [hovered, setHovered] = useState<boolean>(false);
+    const buttonClassName = clsx(style.button, className);
 
-    const getBackgroundColor = (): string => {
-        switch (variant) {
-            case ButtonVariants.FILLED:
-                if (clicked) return getRgbaFromHash(color, 0.6);
-                if (hovered) return getRgbaFromHash(color, 0.92);
-                return getRgbaFromHash(color);
-            case ButtonVariants.OUTLINED:
-                if (clicked) return getRgbaFromHash(color, 0.4);
-                if (hovered) return getRgbaFromHash(color, 0.08);
-                return 'transparent';
-            default:
-                return '';
-        }
-    }
+    const getBackgroundColor = useCallback(
+        (): string => {
+            switch (variant) {
+                case ButtonVariants.FILLED:
+                    if (clicked) return transformColorFromHexToRGBA(color, 0.6);
+                    if (hovered) return transformColorFromHexToRGBA(color, 0.92);
+                    return transformColorFromHexToRGBA(color, 1);
+                case ButtonVariants.OUTLINED:
+                    if (clicked) return transformColorFromHexToRGBA(color, 0.4);
+                    if (hovered) return transformColorFromHexToRGBA(color, 0.08);
+                    return 'transparent';
+                default:
+                    return '';
+            }
+        }, 
+        [clicked, color, hovered, variant]
+    );
 
     const theme = {
         button: {
@@ -40,16 +37,16 @@ export default function Button(props: IButton) {
         },
     };
 
-    function handleMouseDown() {
+    const handleMouseDown = () => {
         setClicked(true)
     }
-    function handleMouseUp() {
+    const handleMouseUp = () => {
         setClicked(false)
     }
-    function handleMouseEnter() {
+    const handleMouseEnter = () => {
         setHovered(true);
     }
-    function handleMouseLeave() {
+    const handleMouseLeave = () => {
         setHovered(false);
         setClicked(false);
     }
@@ -61,7 +58,7 @@ export default function Button(props: IButton) {
             onMouseUp={handleMouseUp} 
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={clsx(style.button, className)} 
+            className={buttonClassName} 
             style={theme.button}
         >
             {children}

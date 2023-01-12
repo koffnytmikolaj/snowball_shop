@@ -1,18 +1,22 @@
 import { createContext, useContext, Component } from 'react';
-import { sections } from '../../enums/SectionType';
 import { AppContext } from './app.types';
-import { Props, State } from './app.types';
+import { Props, State, ILocation } from './app.types';
 
 const appContext = createContext<AppContext>(undefined!);
 
 export class AppProvider extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.setActivePage = this.setActivePage.bind(this);
+        this.setLocation = this.setLocation.bind(this);
         this.state = {
             context: {
-                activePage: sections.MAIN_PAGE,
-                setActivePage: this.setActivePage,
+                location: {
+                    section1: undefined,
+                    section2: undefined,
+                    section3: 1,
+                    section4: undefined,
+                },
+                setLocation: this.setLocation,
             },
         };
     }
@@ -26,13 +30,15 @@ export class AppProvider extends Component<Props, State> {
             return false;
         }
     }
-    
-    setActivePage = (section: sections) => {
-        this.setState(prev => (
-            { ...prev, context: 
-                    { ...prev.context, activePage: section } 
+
+    setLocation = (location: ILocation) => {
+        this.setState(prev => ({
+            ...prev, 
+            context: {
+                ...prev.context, 
+                location
             }
-        ));
+        }));
     }
 
     render() {

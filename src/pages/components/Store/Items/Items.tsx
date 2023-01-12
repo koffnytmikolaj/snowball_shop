@@ -1,34 +1,23 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { IProduct } from "../../../../interfaces/ProductInterface";
+import { IProduct } from "interfaces/ProductInterface";
+import { useAppContext } from "providers/app/app.providers";
 import { categoriesLists } from "./constants";
-import { Item } from "./Item/Item";
+import Item from "./Item/Item";
 import style from './items.module.css'
 import Pagination from "./Pagination/Pagination";
 
-interface IItems {
-    selectedCategory?: string;
-}
-
-export function Items(props: IItems) {
-    const { selectedCategory } = props;
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const params = useParams();
-    const items: IProduct[] = selectedCategory ? categoriesLists[selectedCategory] : [];
-
-    useEffect(() => {
-      setCurrentPage(Number(params.page || 1));
-    }, [params])
+export default function Items() {
+    const { location } = useAppContext();
+    const items: IProduct[] = location.section2 ? categoriesLists[location.section2] : [];
     
     return (
         <div className={style.content}>
-            {selectedCategory && items.length > 0 && (
+            {location.section2 && items.length > 0 && (
                 <>
-                    <Pagination count={Math.ceil(items.length / 9)} categoryName={selectedCategory} value={currentPage} />
+                    <Pagination count={Math.ceil(items.length / 9)} />
                     <div className={style.itemGrid} >
                         {items.slice(0, 9).map(item => <Item key={item.id} product={item} />)}
                     </div>
-                    <Pagination count={Math.ceil(items.length / 9)} categoryName={selectedCategory} value={currentPage} />
+                    <Pagination count={Math.ceil(items.length / 9)} />
                 </>
             )}
         </div>

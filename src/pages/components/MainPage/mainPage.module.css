@@ -1,4 +1,4 @@
-.welcomeCard {
+.main-page {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,35 +7,48 @@
     margin-top: 48px;
 }
 
-.welcomeCard__text {
+.main-page__text {
     text-align: left;
     max-width: calc(40% - 40px);
     padding: 20px;
-    transition: 0.5s all ease-in-out;
+    transition: opacity 0.5s, transform 0.5s;
+    transition-delay: 0.25s;
+    opacity: 0;
+    transform: translate(50px, 0);
 }
 
-.welcomeCard__text > h1 {
+.main-page__text--shown {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.main-page__text > h1 {
     color: #2A78DE
 }
 
-.welcomeCard__text > p {
-}
-
-.welcomeCard__text_buttons {
+.main-page__buttons {
     display: inline-flex;
     justify-content: space-between;
 }
 
-.welcomeCard__text_buttons > button {
+.main-page__buttons > button {
     margin: 0 6px;
 }
 
-.welcomeCard__image {
+.main-page__image {
     max-width: calc(40% - 40px);
     padding: 20px;
-    transition: 0.5s all ease-in-out;
+    transition: opacity 0.5s, transform 0.5s;
+    transition-delay: 0.5s;
+    opacity: 0;
+    transform: translate(50px, 0);
 }
 
-.welcomeCard__image > img {
+.main-page__image--shown {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.main-page__image > img {
     width: 100%;
 }

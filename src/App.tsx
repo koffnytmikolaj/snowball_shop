@@ -1,26 +1,35 @@
-import { Navbar } from './pages/components/Navbar/Navbar';
-import { MainPage } from './pages/components/MainPage/MainPage';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router';
+import { categories } from 'enums/Categories';
+import { sections } from 'enums/SectionType';
+import { AboutUs, MainPage, Navbar, Product, Store } from 'pages/components';
+import { useAppContext } from 'providers/app/app.providers';
 import './App.css';
-import { Route, Routes } from 'react-router';
-import { Store } from './pages/components/Store/Store';
-import { Services } from './pages/components/Services/Services';
-import { Accessories } from './pages/components/Accessories/Accessories';
-import { Support } from './pages/components/Support/Support';
-import Product from './pages/components/Store/Product/Product';
 
 function App() {
+  const pathname = useLocation().pathname;
+  const { setLocation } = useAppContext();
+
+  useEffect(() => {
+    const [section1, section2, section3, section4] = pathname.split('/').slice(1);
+    setLocation({ 
+      section1: `/${section1}` as sections, 
+      section2: section2 as categories, 
+      section3: section3 ? Number(section3) : 1, 
+      section4 
+    });
+  }, [pathname, setLocation]);
+
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path='/' key="home" element={<MainPage />} />
-        <Route path='/store' key='store' element={<Store />} />
-        <Route path='/store/:categoryId' key='category' element={<Store />} />
-        <Route path='/store/:categoryId/:page' key='page' element={<Store />} />
-        <Route path='/store/product/:productId' key='page' element={<Product />} />
-        <Route path='/services' key='services' element={<Services />} />
-        <Route path='/accessories' key='accessories' element={<Accessories />} />
-        <Route path='/support' key='support' element={<Support />} />
+        <Route path={sections.MAIN_PAGE} key="home" element={<MainPage />} />
+        <Route path={sections.STORE} key='store' element={<Store />} />
+        <Route path={`${sections.STORE}/:categoryId`} key='category' element={<Store />} />
+        <Route path={`${sections.STORE}/:categoryId/:page`} key='page' element={<Store />} />
+        <Route path={`${sections.STORE}/product/:productId`} key='product' element={<Product />} />
+        <Route path={sections.ABOUT_US} key='aboutus' element={<AboutUs />} />
       </Routes>
     </div>
   );

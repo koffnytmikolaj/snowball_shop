@@ -1,5 +1,7 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
+import { sections } from 'enums/SectionType';
 import style from './categoryButton.module.css';
 
 interface ICategoryButton {
@@ -11,9 +13,9 @@ export default function CategoryButton(props: ICategoryButton) {
     const { categoryId, categoryName } = props;
     const navigate = useNavigate();
 
-    function handleClick() {
-        navigate(`/store/${categoryId}`);
-    }
+    const handleClick = useCallback(() => {
+        navigate(`${sections.STORE}/${categoryId}`);
+    }, [categoryId, navigate]);
 
     return (
         <button 

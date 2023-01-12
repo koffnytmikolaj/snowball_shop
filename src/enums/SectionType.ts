@@ -1,9 +1,11 @@
+export enum sectionsNames {
+    MAIN_PAGE = '',
+    STORE = 'store',
+    ABOUT_US = 'aboutus',
+}
+
 export enum sections {
     MAIN_PAGE = '/',
     STORE = '/store',
-    SERVICES = '/services',
-    ACCESSORIES = '/accessories',
-    SUPPORT = '/support',
-    SEARCH = '/search',
-    BAG = '/bag',
+    ABOUT_US = '/aboutus',
 }

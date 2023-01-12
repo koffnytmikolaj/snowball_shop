@@ -1,6 +1,6 @@
-import { IProduct } from "../../../../interfaces/ProductInterface";
-import image1 from '../../../../assets/global/shoes-153310.png'
-import { Categories } from "../../../../enums/Categories";
+import { categories } from "enums/Categories";
+import { IProduct } from "interfaces/ProductInterface";
+import image1 from 'assets/global/shoes-153310.png'
 
 const bootsItems: IProduct[] = [
     {
@@ -259,12 +259,12 @@ const jacketsItems: IProduct[] = [];
 const tshirtsItems: IProduct[] = [];
 
 export const categoriesLists = {
-    [Categories.BOOTS]: bootsItems,
-    [Categories.UNDERWEAR]: underwearItems,
-    [Categories.TROUSERS]: trousersItems,
-    [Categories.DRESSES]: dressesItems,
-    [Categories.SOCKS]: socksItems,
-    [Categories.GLOVES]: glovesItems,
-    [Categories.JACKETS]: jacketsItems,
-    [Categories.T_SHIRTS]: tshirtsItems,
+    [categories.BOOTS]: bootsItems,
+    [categories.UNDERWEAR]: underwearItems,
+    [categories.TROUSERS]: trousersItems,
+    [categories.DRESSES]: dressesItems,
+    [categories.SOCKS]: socksItems,
+    [categories.GLOVES]: glovesItems,
+    [categories.JACKETS]: jacketsItems,
+    [categories.T_SHIRTS]: tshirtsItems,
 };

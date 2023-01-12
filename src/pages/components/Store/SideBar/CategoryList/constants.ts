@@ -1,12 +1,12 @@
-import { Categories } from '../../../../../enums/Categories';
+import { categories } from 'enums/Categories';
 
 export const listItems = [
-    { key: Categories.UNDERWEAR, text: 'Bielizna' },
-    { key: Categories.BOOTS, text: 'Buty' },
-    { key: Categories.T_SHIRTS, text: 'Koszulki' },
-    { key: Categories.JACKETS, text: 'Kurtki i płaszcze' },
-    { key: Categories.GLOVES, text: 'Rękawiczki' },
-    { key: Categories.SOCKS, text: 'Skarpety' },
-    { key: Categories.TROUSERS, text: 'Spodnie' },
-    { key: Categories.DRESSES, text: 'Sukienki i spódniczki' },
+    { key: categories.UNDERWEAR, text: 'Bielizna' },
+    { key: categories.BOOTS, text: 'Buty' },
+    { key: categories.T_SHIRTS, text: 'Koszulki' },
+    { key: categories.JACKETS, text: 'Kurtki i płaszcze' },
+    { key: categories.GLOVES, text: 'Rękawiczki' },
+    { key: categories.SOCKS, text: 'Skarpety' },
+    { key: categories.TROUSERS, text: 'Spodnie' },
+    { key: categories.DRESSES, text: 'Sukienki i spódniczki' },
 ];

@@ -1,21 +1,23 @@
-import { IProduct } from "../../../../../interfaces/ProductInterface";
-import style from './item.module.css'
-import Button from "../../../../../components/Button/Button";
-import { ButtonVariants } from "../../../../../types/ButtonType";
+import { useCallback } from "react";
 import { useNavigate } from "react-router";
+import { ButtonVariants } from "enums/Button";
+import { sections } from "enums/SectionType";
+import { IProduct } from "interfaces/ProductInterface";
+import Button from "components/Button/Button";
+import style from './item.module.css'
 
 interface IItem {
     product: IProduct;
 }
 
-export function Item(props: IItem) {
+export default function Item(props: IItem) {
     const { product } = props;
     const navigate = useNavigate();
     const name = product.name.length <= 28 ? product.name : `${product.name.substring(0, 25)}...`;
 
-    const openItem = () => {
-        navigate(`/store/product/${product.id}`);
-    }
+    const openItem = useCallback(() => {
+        navigate(`${sections.STORE}/product/${product.id}`);
+    }, [product, navigate]);
 
     return (
         <div className={style.item} onClick={openItem}>

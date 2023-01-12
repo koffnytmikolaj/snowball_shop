@@ -1,28 +1,26 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { SetAfterTime } from "../../../../../helpers/setAfterTime";
+import { clsx } from "clsx";
+import { ButtonVariants } from "enums/Button";
+import { sections } from "enums/SectionType";
+import Button from "components/Button/Button";
 import style from './filters.module.css';
-import Button from "../../../../../components/Button/Button";
-import { ButtonVariants } from "../../../../../types/ButtonType";
 
-interface IFilters {}
-
-export function Filters(props: IFilters) {
+export default function Filters() {
     const [showContent, setShowContent] = useState<boolean>(false);
     const navigate = useNavigate();
+    const filtersClassNames = clsx(style.filters, showContent && style['filters--shown'])
 
-    const theme = {
-        transform: `translate3d(${showContent ? 0 : -152}px, 0, 0)`,
-    }
+    useEffect(() => {
+        setShowContent(true);
+    }, []);
 
-    SetAfterTime(showContent, setShowContent, 0);
-
-    function handleReturnButtonClick() {
-        navigate('/store');
-    }
+    const handleReturnButtonClick = useCallback(() => {
+        navigate(sections.STORE);
+    }, [navigate]);
 
     return (
-        <div style={theme} className={style.content}>
+        <div className={filtersClassNames}>
             <Button 
                 variant={ButtonVariants.OUTLINED} 
                 color='#FFF' 

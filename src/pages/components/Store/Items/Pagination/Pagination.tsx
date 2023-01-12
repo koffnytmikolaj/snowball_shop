@@ -1,23 +1,24 @@
 import { useCallback } from "react";
 import { useNavigate } from 'react-router';
+import { sections } from "enums/SectionType";
+import { useAppContext } from "providers/app/app.providers";
 import { Pagination as PaginationMui } from "@mui/material";
 
 interface IPagination {
-  categoryName: string;
   count: number;
-  value: number;
 }
 
 export default function Pagination(props: IPagination) {
-    const { categoryName, count, value } = props;
+    const { count } = props;
+    const { location } = useAppContext();
     const navigate = useNavigate();
 
     const onChange = useCallback(
       (_: React.ChangeEvent<unknown>, number: number) => {
-        navigate(`/store/${categoryName}/${number}`);
+        navigate(`${sections.STORE}/${location.section2}/${number}`);
       },
-      [categoryName, navigate],
+      [location.section2, navigate],
     );
     
-    return <PaginationMui count={count} onChange={onChange} page={value} />
+    return <PaginationMui count={count} onChange={onChange} page={location.section3} />
 }

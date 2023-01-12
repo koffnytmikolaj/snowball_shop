@@ -1,17 +1,13 @@
-import { ReactNode } from 'react';
+import { BoxProps } from 'interfaces/components';
 import clsx from 'clsx';
 import style from './box.module.css';
 
-interface IBox {
-    children: ReactNode;
-    className?: string;
-    sx?: object;
-}
-
-export default function Box(props: IBox) {
+export default function Box(props: BoxProps) {
     const { children, className, sx } = props;
+    const boxClassName = clsx(style.blackBox, className);
+    
     return (
-        <div className={clsx(style.blackBox, className)} style={sx}>
+        <div className={boxClassName} style={sx}>
             <div className={style.content}>
                 {children}
             </div>

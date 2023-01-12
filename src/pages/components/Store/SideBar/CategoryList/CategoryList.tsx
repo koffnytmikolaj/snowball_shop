@@ -3,9 +3,7 @@ import { listItems } from './constants';
 import style from './categoryList.module.css';
 import CategoryButton from './CategoryButton/CategoryButton';
 
-interface ICategoryList {}
-
-export function CategoryList(props: ICategoryList) {
+export default function CategoryList() {
     const [showContent, setShowContent] = useState<boolean>(false);
 
     const theme = {

@@ -1,10 +1,17 @@
-.content {
+.filters {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     min-width: 152px;
     max-width: 152px;
-    transition: 0.25s all ease-in-out;
+    transition: opacity 0.25s, transform 0.25s;
+    opacity: 0;
+    transform: translate(-152px, 0px);
+}
+
+.filters--shown {
+    opacity: 1;
+    transform: translate(0, 0);
 }
 
 .filters__button {
