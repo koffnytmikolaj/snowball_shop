@@ -1,0 +1,24 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar__header {
+    color: #2A78DE;
+    margin-right: 32px;
+}
+
+.search-bar__input {
+    border-radius: 16px;
+    padding: 8px;
+}
+
+.search-bar__input:focus-visible {
+    outline: 0;
+}
+
+.search-bar__icon {
+    border-radius: 64px;
+    margin-right: 8px;
+    cursor: pointer;
+}

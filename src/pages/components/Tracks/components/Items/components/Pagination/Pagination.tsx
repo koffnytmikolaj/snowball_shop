@@ -15,7 +15,7 @@ export default function Pagination(props: IPagination) {
 
     const onChange = useCallback(
       (_: React.ChangeEvent<unknown>, number: number) => {
-        navigate(`${sections.STORE}/${location.section2}/${number}`);
+        navigate(`${sections.TRACKS}/${location.section2}/${number}`);
       },
       [location.section2, navigate],
     );

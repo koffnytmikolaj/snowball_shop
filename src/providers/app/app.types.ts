@@ -5,7 +5,7 @@ import { AppProvider } from './app.providers';
 
 export interface ILocation {
     section1?: sections;
-    section2?: categories;
+    section2?: string;
     section3: number;
     section4?: string;
 }

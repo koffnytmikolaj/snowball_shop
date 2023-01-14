@@ -18,26 +18,26 @@ export default function MainPage() {
         setShown(true);
     }, []);
 
-    const navigateToLogIn = () => {
-        console.log('log in');
-    }
+    const navigateToTracks = useCallback(() => {
+        navigate(sections.TRACKS);
+    }, [navigate]);
 
-    const navigateToStore = useCallback(() => {
-        navigate(sections.STORE);
+    const navigateToAboutUs = useCallback(() => {
+        navigate(sections.ABOUT_US);
     }, [navigate]);
 
     return (
         <div className={style['main-page']}>
             <div className={textClassNames}>
-                <h1>SnowBall</h1>
-                <h2>Witamy w sklepie internetowym SnowBall!</h2>
+                <h1>MusicBall</h1>
+                <h2>Witamy na stronie internetowej MusicBall!</h2>
                 <p>
-                    Znajdziesz tu wszystko, czego potrzebujesz. Od rękawiczek po najbardziej ekskluzywne płaszcze.<br />
-                    Zaloguj się, aby otrzymywać powiadomienia o wszelkich zmianach oraz by korzystać z promocji PREMIUM lub przejdź do sklepu!
+                    Poznaj najbardziej znamienite postaci w historii muzyki klasycznej oraz ich największe dzieła.<br />
+                    Rozpocznij swoją przygodę przechodząc do sekcji muzyki lub skontaktuj się z nami!
                 </p>
                 <div className={style['main-page__buttons']}>
-                    <Button onClick={navigateToLogIn}><>Zaczynamy</></Button>
-                    <Button onClick={navigateToStore} variant={ButtonVariants.OUTLINED}><>Do sklepu!</></Button>
+                    <Button onClick={navigateToTracks}><>Zaczynamy</></Button>
+                    <Button onClick={navigateToAboutUs} variant={ButtonVariants.OUTLINED}><>Kontakt</></Button>
                 </div>
             </div>
             <div className={imageClassNames}>

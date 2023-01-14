@@ -16,7 +16,7 @@ export default function Filters() {
     }, []);
 
     const handleReturnButtonClick = useCallback(() => {
-        navigate(sections.STORE);
+        navigate(sections.TRACKS);
     }, [navigate]);
 
     return (

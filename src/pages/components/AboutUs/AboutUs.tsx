@@ -30,18 +30,18 @@ export default function AboutUs() {
                     {contactSections.map(contactSectionProps => {
                         return (
                             <ContactSection 
-                            key={contactSectionProps.id}
-                            id={contactSectionProps.id}
-                            headerText={contactSectionProps.headerText}
-                            email={contactSectionProps.email}
-                            phoneNumber={contactSectionProps.phoneNumber}
-                            show={show}
+                                key={contactSectionProps.id}
+                                id={contactSectionProps.id}
+                                headerText={contactSectionProps.headerText}
+                                email={contactSectionProps.email}
+                                phoneNumber={contactSectionProps.phoneNumber}
+                                show={show}
                             />
                         );
                     })}
                 </div>
             </div>
-            <img src={img} className={imgClassNames} />
+            <img src={img} className={imgClassNames} alt='contact' />
         </div>
     );
 }

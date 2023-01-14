@@ -21,13 +21,14 @@
     "jsx": "react-jsx",
     "baseUrl": "./src/",
     "paths": {
-      "@/@components": ["components/*"],
-      "@/@enums": ["enums/*"],
-      "@/@helpers": ["helpers/*"],
-      "@/@interfaces": ["interfaces/*"],
-      "@/@pages": ["pages/*"],
-      "@/@providers": ["providers/*"],
-      "@/@types": ["types/*"],
+      "components": ["components/*"],
+      "enums": ["enums/*"],
+      "helpers": ["helpers/*"],
+      "interfaces": ["interfaces/*"],
+      "pages": ["pages/*"],
+      "providers": ["providers/*"],
+      "store": ["store/*"],
+      "types": ["types/*"],
     }
   },
   "include": [

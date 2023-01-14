@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 import { useAppContext } from "providers/app/app.providers";
 import { NavItemProps } from "./interface";
 import style from './navItem.module.css';
-import AcUnitSharpIcon from '@mui/icons-material/AcUnitSharp';
+import MusicNoteSharpIcon from '@mui/icons-material/MusicNoteSharp';
 
 export default function NavItem(props: NavItemProps) {
     const { pageId, label } = props;
@@ -19,7 +19,7 @@ export default function NavItem(props: NavItemProps) {
 
     return (
         <button className={buttonClassNames} onClick={changeSection}>
-            {label || <AcUnitSharpIcon />}
+            {label || <MusicNoteSharpIcon />}
         </button>
     );
 }
