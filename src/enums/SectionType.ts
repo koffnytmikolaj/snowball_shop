@@ -1,11 +1,13 @@
 export enum sectionsNames {
-    MAIN_PAGE = '',
-    TRACKS = 'tracks',
     ABOUT_US = 'aboutus',
+    MAIN_PAGE = '',
+    TRACK = 'track',
+    TRACKS = 'tracks',
 }
 
 export enum sections {
-    MAIN_PAGE = '/',
-    TRACKS = '/tracks',
     ABOUT_US = '/aboutus',
+    MAIN_PAGE = '/',
+    TRACK = '/track',
+    TRACKS = '/tracks',
 }

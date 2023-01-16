@@ -15,10 +15,13 @@
 
 .search-bar__input:focus-visible {
     outline: 0;
+    border-color: rgb(99, 59, 245) rgba(99, 59, 245, 0.8) rgba(99, 59, 245, 0.8) rgb(99, 59, 245)
 }
 
 .search-bar__icon {
     border-radius: 64px;
+    border-left-width: 0;
+    outline-width: 0;
     margin-right: 8px;
     cursor: pointer;
 }

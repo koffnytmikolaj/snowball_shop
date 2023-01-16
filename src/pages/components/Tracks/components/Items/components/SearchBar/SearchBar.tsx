@@ -1,5 +1,5 @@
 import { KeyboardEvent, MutableRefObject, useCallback, useRef } from 'react';
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { ButtonVariants } from "enums/Button";
 import { useAppContext } from "providers/app/app.providers";
 import { Pagination } from "..";
@@ -10,38 +10,24 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar(props: SearchBarProps) {
     const { location } = useAppContext();
-    const { numberOfPages, setSearchText } = props;
+    const { numberOfPages } = props;
     const navigate = useNavigate();
-    const currentLocation = useLocation();
     const inputReference = useRef() as MutableRefObject<HTMLInputElement>;
     const composer = location.section2 || '';
     const composerName = `${composer.charAt(0).toUpperCase()}${composer.slice(1)}`
 
     const handleClick = useCallback(() => {
-        const { search } = currentLocation;
-        const getSearchPath = (): string => {
-            if (search) {
-                let searchPath = '';
-                search.slice(1).split('&').forEach(searchParam => {
-                    if (searchParam.slice(0, searchParam.indexOf('=')) === 'searchText') {
-                        searchPath += `searchText=${inputReference.current.value}&`;
-                        return;
-                    }
-                    searchPath += `${searchParam}&`;
-                })
-                return searchPath.slice(0, searchPath.length - 1);
-            }
-            return `searchText=${inputReference.current.value}`;
-        }
-
-        navigate(`${location.section1}/${location.section2}/1?${getSearchPath()}`);
-        setSearchText(inputReference.current.value);
-    }, [currentLocation, location, navigate, setSearchText]);
+        const searchPath = inputReference.current.value.trim()
+            ? `?searchText=${inputReference.current.value.trim()}`
+            : ''
+        navigate(`${location.section1}/${location.section2}/1${searchPath}`);
+    }, [location, navigate]);
 
     const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
         e.key === 'Enter' && handleClick();
     }, [handleClick])
     
+    if (!composerName || numberOfPages < 0) return null;
     return (
         <div className={style['search-bar']}>
             <h1 className={style['search-bar__header']}>{composerName}</h1>

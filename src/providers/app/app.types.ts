@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { categories } from 'enums/Categories';
 import { sections } from 'enums/SectionType';
+import { ISearchParams } from 'interfaces/Search';
 import { AppProvider } from './app.providers';
 
 export interface ILocation {
@@ -8,6 +8,7 @@ export interface ILocation {
     section2?: string;
     section3: number;
     section4?: string;
+    searchParams: ISearchParams;
 }
 
 export interface AppContext {

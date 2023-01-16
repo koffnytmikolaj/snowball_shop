@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { sectionsNames } from "enums/SectionType";
 import { Filters } from "enums/store";
 import { IGetTracksParameters, ITrack } from "interfaces/store";
 import { useAppContext } from "providers/app/app.providers";
@@ -9,14 +9,13 @@ import style from './items.module.css'
 
 export default function Items() {
     const { location } = useAppContext();
-    const currentLocation = useLocation();
-    const [numberOfPages, setNumberOfPages] = useState<number>(1);
+    const [numberOfPages, setNumberOfPages] = useState<number>(-1);
     const [items, setItems] = useState<ITrack[]>([]);
-    const [searchText, setSearchText] = useState<string>();
 
     useEffect(() => {
-        if (!location.section1) return;
+        if (!location.section1 || location.section2 === sectionsNames.TRACK) return;
         const setComposerTracks = async () => {
+            const { searchText } = location.searchParams;
             const parameters: IGetTracksParameters = {
                 searchText,
                 pageNumber: location.section3,
@@ -35,41 +34,26 @@ export default function Items() {
             };
             const tracks = await getFilteredTracks(parameters);
             setItems(tracks);
-            setNumberOfPages(1);
+            setNumberOfPages(-1);
         }
 
         location.section2 
             ? setComposerTracks()
-            : setTracks()
-    }, [currentLocation, location, searchText]);
+            : setTracks();
+    }, [location]);
 
-    useEffect(() => {
-        const { search } = currentLocation;
-        search.slice(1).split('&').forEach(searchParam => {
-            switch (searchParam.slice(0, searchParam.indexOf('='))) {
-                case 'searchText':
-                    setSearchText(searchParam.slice(searchParam.indexOf('=') + 1));
-                    break;
-                default:
-                    break;
-            }
-        })
-    }, [currentLocation]);
-    
     return (
         <div className={style.items}>
-            {location.section2 && 
-                <>
-                    <SearchBar numberOfPages={numberOfPages} setSearchText={setSearchText} />
-                </>
-            }
-            {items.length > 0 && (
+            {location.section2 && <SearchBar numberOfPages={numberOfPages} />}
+            {items.length > 0 ? (
                 <>
                     <div className={style.items__grid} >
                         {items.map(item => <Item key={item.id} product={item} />)}
                     </div>
-                    {location.section2 && <Pagination count={numberOfPages} />}
+                    {location.section2 && numberOfPages > 0 && <Pagination count={numberOfPages} />}
                 </>
+            ) : (
+                <h1 className={style['items__no-data']}>Brak wyników wyszukiwania!</h1>
             )}
         </div>
     );

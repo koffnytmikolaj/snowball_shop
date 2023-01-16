@@ -15,6 +15,9 @@ export class AppProvider extends Component<Props, State> {
                     section2: undefined,
                     section3: 1,
                     section4: undefined,
+                    searchParams: {
+                        searchText: '',
+                    },
                 },
                 setLocation: this.setLocation,
             },

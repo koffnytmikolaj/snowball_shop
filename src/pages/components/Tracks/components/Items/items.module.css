@@ -15,3 +15,8 @@
     gap: 2em;
     padding: 2em;
 }
+
+.items__no-data {
+    margin-top: 64px;
+    align-self: center;
+}
