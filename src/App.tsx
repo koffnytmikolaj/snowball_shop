@@ -18,7 +18,7 @@ function App() {
     setLocation({ 
       section1: `/${section1}` as sections, 
       section2: section2 as string,
-      section3: section3 ? Number(section3) : 1, 
+      section3: section3 && Number(section3) >= 1 ? Number(section3) : 1, 
       section4,
       searchParams: getSearchParams(searchParams),
     });

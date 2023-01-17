@@ -50,8 +50,6 @@ export const getAllTracksByComposer = async (composer: string, searchText?: stri
 
 const sortByFilters = (track1: ITrack, track2: ITrack, orderBy: Filters): number => {
     switch (orderBy) {
-        case Filters.COMPOSER:
-            return track1.composer.localeCompare(track2.composer);
         case Filters.COMPOSITION:
             return track1.composition.localeCompare(track2.composition);
         case Filters.ENSEMBLE:

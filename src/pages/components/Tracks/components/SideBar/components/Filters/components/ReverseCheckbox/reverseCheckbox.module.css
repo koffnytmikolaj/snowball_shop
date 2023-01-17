@@ -1,0 +1,6 @@
+.reverse-checkbox {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    margin: 8px;
+}

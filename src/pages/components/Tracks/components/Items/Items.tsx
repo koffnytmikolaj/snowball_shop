@@ -15,12 +15,12 @@ export default function Items() {
     useEffect(() => {
         if (!location.section1 || location.section2 === sectionsNames.TRACK) return;
         const setComposerTracks = async () => {
-            const { searchText } = location.searchParams;
+            const { orderBy, reverse, searchText } = location.searchParams;
             const parameters: IGetTracksParameters = {
                 searchText,
                 pageNumber: location.section3,
-                orderBy: Filters.DEFAULT,
-                reverse: false,
+                orderBy,
+                reverse,
             };
             const tracks = await getFilteredTracksByComposer(parameters, location.section2 || '');
             setItems(tracks);
@@ -30,7 +30,7 @@ export default function Items() {
 
         const setTracks = async () => {
             const parameters: IGetTracksParameters = {
-                orderBy: Filters.TRACK_LENGTH,
+                orderBy: Filters.COMPOSITION,
             };
             const tracks = await getFilteredTracks(parameters);
             setItems(tracks);

@@ -1,6 +1,6 @@
 import { createContext, useContext, Component } from 'react';
-import { AppContext } from './app.types';
-import { Props, State, ILocation } from './app.types';
+import { Filters } from 'enums/store';
+import { AppContext, Props, State, ILocation } from './app.types';
 
 const appContext = createContext<AppContext>(undefined!);
 
@@ -16,6 +16,8 @@ export class AppProvider extends Component<Props, State> {
                     section3: 1,
                     section4: undefined,
                     searchParams: {
+                        orderBy: Filters.DEFAULT,
+                        reverse: false,
                         searchText: '',
                     },
                 },
