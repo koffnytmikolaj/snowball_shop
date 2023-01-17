@@ -1,0 +1,30 @@
+.track-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+    transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(50px, 0);
+}
+
+.track-content--shown {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.track-content__title {
+    font-weight: 500;
+    align-self: flex-start;
+    width: 100px;
+}
+
+.track-content__paragraph {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    color: #2A78DE;
+}

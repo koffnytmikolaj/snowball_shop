@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
 import { sections } from 'enums/SectionType';
 import { getSearchParams } from 'helpers/searchHelpers';
-import { AboutUs, MainPage, Navbar, Product, Tracks } from 'pages/components';
+import { AboutUs, MainPage, Navbar, Track, Tracks } from 'pages/components';
 import { useAppContext } from 'providers/app/app.providers';
 import './App.css';
 
@@ -32,7 +32,7 @@ function App() {
         <Route path={sections.TRACKS} key='tracks' element={<Tracks />} />
         <Route path={`${sections.TRACKS}/:categoryId`} key='composer' element={<Tracks />} />
         <Route path={`${sections.TRACKS}/:categoryId/:page`} key='page' element={<Tracks />} />
-        <Route path={`${sections.TRACKS}${sections.TRACK}/:trackId`} key='track' element={<Product />} />
+        <Route path={`${sections.TRACKS}${sections.TRACK}/:trackId`} key='track' element={<Track />} />
         <Route path={sections.ABOUT_US} key='aboutus' element={<AboutUs />} />
       </Routes>
     </div>

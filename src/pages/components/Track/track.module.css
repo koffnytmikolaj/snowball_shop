@@ -1,0 +1,47 @@
+.track {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.track__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.track__header {
+    color: #2A78DE;
+    transition: opacity 0.25s;
+    transition-delay: 0.8s;
+    opacity: 0;
+}
+
+.track__header--shown {
+    opacity: 1;
+}
+
+.track__sections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.track__image {
+    border-radius: 20px;
+    margin: 32px;
+    width: calc(50% - 64px);
+    transition: transform 0.8s, opacity 0.5s;
+    opacity: 0;
+    transform: translate(calc(-100% - 64px), 0);
+}
+
+.track__image--shown {
+    opacity: 1;
+    transform: translate(0, 0);
+}

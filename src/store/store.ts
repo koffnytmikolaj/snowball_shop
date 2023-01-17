@@ -138,3 +138,8 @@ export const getImageForTrack = (track: ITrack): string => {
             return '';
     }
 }
+
+export const getTrackById = async (id: number): Promise<ITrack | null> => {
+    const tracks = await getAllTracks();
+    return tracks.find(track => track.id === id) || null;
+}

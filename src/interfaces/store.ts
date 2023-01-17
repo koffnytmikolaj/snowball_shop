@@ -1,19 +1,25 @@
-import { Filters } from "enums/store";
+import { Filters, trackSections } from "enums/store";
+import { TrackSectionType } from "types/Tracks";
 
 export interface IDatabase {
     tracks: ITrack[];
 }
 
 export interface ITrack {
-    id: number;
-    composer: string;
-    composition: string;
-    movement: string;
-    ensemble: string;
-    source: string;
-    transcriber: string;
-    catalog_name: string;
-    seconds: number;
+    [trackSections.ID]: number;
+    [trackSections.COMPOSER]: string;
+    [trackSections.COMPOSITION]: string;
+    [trackSections.MOVEMENT]: string;
+    [trackSections.ENSEMBLE]: string;
+    [trackSections.SOURCE]: string;
+    [trackSections.TRANSCRIBER]: string;
+    [trackSections.CATALOG_NAME]: string;
+    [trackSections.SECONDS]: number;
+}
+
+export interface ITrackSection {
+    section: trackSections;
+    value?: TrackSectionType;
 }
 
 export interface IGetTracksParameters {
@@ -21,4 +27,10 @@ export interface IGetTracksParameters {
     pageNumber?: number;
     reverse?: boolean;
     searchText?: string;
+}
+
+export interface ITime {
+    hours: string;
+    minutes: string;
+    seconds: string;
 }
