@@ -1,19 +1,19 @@
+import { TrackSections } from "enums/TrackEnums";
 import { TrackSectionType } from "types/TrackTypes";
-import { trackSections } from "enums/store";
 
 export interface ITrack {
-    [trackSections.ID]: number;
-    [trackSections.COMPOSER]: string;
-    [trackSections.COMPOSITION]: string;
-    [trackSections.MOVEMENT]: string;
-    [trackSections.ENSEMBLE]: string;
-    [trackSections.SOURCE]: string;
-    [trackSections.TRANSCRIBER]: string;
-    [trackSections.CATALOG_NAME]: string;
-    [trackSections.SECONDS]: number;
+    [TrackSections.ID]: number;
+    [TrackSections.COMPOSER]: string;
+    [TrackSections.COMPOSITION]: string;
+    [TrackSections.MOVEMENT]: string;
+    [TrackSections.ENSEMBLE]: string;
+    [TrackSections.SOURCE]: string;
+    [TrackSections.TRANSCRIBER]: string;
+    [TrackSections.CATALOG_NAME]: string;
+    [TrackSections.SECONDS]: number;
 }
 
 export interface ITrackSection {
-    section: trackSections;
+    section: TrackSections;
     value?: TrackSectionType;
 }

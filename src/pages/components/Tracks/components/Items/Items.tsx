@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SectionsNames } from "enums/SectionType";
-import { Filters } from "enums/store";
+import { Filters } from "enums/StoreEnums";
 import { ISearchParams } from "interfaces/SearchInterfaces";
 import { IGetTracksParameters } from 'interfaces/StoreInterfaces';
 import { ITrack } from "interfaces/TrackInterfaces";

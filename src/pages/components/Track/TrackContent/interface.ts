@@ -1,8 +1,8 @@
-import { trackSections } from "enums/store";
+import { TrackSections } from "enums/TrackEnums";
 import { TrackSectionType } from "types/TrackTypes";
 
 export interface TrackContentProps {
-    id: trackSections;
+    id: TrackSections;
     index: number;
     value?: TrackSectionType;
     show: boolean;

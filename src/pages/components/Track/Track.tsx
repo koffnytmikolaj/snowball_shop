@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 import { clsx } from "clsx";
-import { trackSections } from "enums/store";
+import { TrackSections } from "enums/TrackEnums";
 import { ITrack, ITrackSection } from "interfaces/TrackInterfaces";
 import { getImageForTrack, getTrackById } from "store/store";
 import TrackContent from "./TrackContent";
@@ -13,10 +13,10 @@ export default function Track() {
     const [image, setImage] = useState<string>();
     const [show, setShow] = useState<boolean>(false);
     const sections: ITrackSection[] = [
-        {section: trackSections.COMPOSITION, value: track?.composition},
-        {section: trackSections.MOVEMENT, value: track?.movement},
-        {section: trackSections.ENSEMBLE, value: track?.ensemble},
-        {section: trackSections.SECONDS, value: track?.seconds},
+        {section: TrackSections.COMPOSITION, value: track?.composition},
+        {section: TrackSections.MOVEMENT, value: track?.movement},
+        {section: TrackSections.ENSEMBLE, value: track?.ensemble},
+        {section: TrackSections.SECONDS, value: track?.seconds},
     ];
 
     const contactHeaderClassNames = clsx(

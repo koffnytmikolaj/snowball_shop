@@ -1,11 +1,4 @@
-export enum Filters {
-    DEFAULT,
-    COMPOSITION,
-    ENSEMBLE,
-    TRACK_LENGTH,
-}
-
-export enum trackSections {
+export enum TrackSections {
     ID = 'id',
     COMPOSER = 'composer',
     COMPOSITION = 'composition',

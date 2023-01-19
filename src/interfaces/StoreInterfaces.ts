@@ -1,4 +1,4 @@
-import { Filters } from "enums/store";
+import { Filters } from "enums/StoreEnums";
 import { ITrack } from "interfaces/TrackInterfaces";
 
 export interface IDatabase {

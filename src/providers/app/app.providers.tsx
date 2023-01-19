@@ -1,6 +1,6 @@
 import { createContext, useContext, Component } from 'react';
 import { Sections } from 'enums/SectionType';
-import { Filters } from 'enums/store';
+import { Filters } from 'enums/StoreEnums';
 import { ISearchParams } from 'interfaces/SearchInterfaces';
 import { AppContext, Props, State } from './app.types';
 

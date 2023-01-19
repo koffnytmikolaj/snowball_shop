@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchParams } from 'enums/SearchEnums';
-import { Filters } from 'enums/store';
+import { Filters } from 'enums/StoreEnums';
 import { typeSearchPath } from 'helpers/searchHelpers';
 import { useAppContext } from 'providers/app/app.providers';
 import { SortSelectProps } from './interface';

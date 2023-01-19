@@ -1,3 +1,3 @@
-import { Filters } from "enums/store";
+import { Filters } from "enums/StoreEnums";
 
 export type SearchParamsType = boolean | string | Filters;

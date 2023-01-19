@@ -1,4 +1,4 @@
-import { Filters } from 'enums/store';
+import { Filters } from 'enums/StoreEnums';
 import { sleep } from 'helpers/timeHelpers';
 import { ITrack } from 'interfaces/TrackInterfaces';
 import { IDatabase, IGetTracksParameters } from 'interfaces/StoreInterfaces';

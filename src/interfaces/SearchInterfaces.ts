@@ -1,5 +1,5 @@
 import { SearchParams } from "enums/SearchEnums";
-import { Filters } from "enums/store";
+import { Filters } from "enums/StoreEnums";
 import { SearchParamsType } from "types/SearchTypes";
 
 export interface ISearchParams {

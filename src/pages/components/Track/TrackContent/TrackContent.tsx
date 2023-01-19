@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
-import { trackSections } from 'enums/store';
+import { TrackSections } from 'enums/TrackEnums';
 import { convertTimeToString } from './helpers';
 import { TrackContentProps } from './interface';
 import style from './trackContent.module.css';
@@ -23,19 +23,19 @@ export default function TrackContent(props: TrackContentProps) {
 
     useEffect(() => {
         switch(id) {
-            case trackSections.COMPOSITION:
+            case TrackSections.COMPOSITION:
                 setTitle('Kompozycja');
                 setSectionValue(value?.toString() || '');
                 break;
-            case trackSections.MOVEMENT:
+            case TrackSections.MOVEMENT:
                 setTitle('Część');
                 setSectionValue(value?.toString() || '');
                 break;
-            case trackSections.ENSEMBLE:
+            case TrackSections.ENSEMBLE:
                 setTitle('Zespół');
                 setSectionValue(value?.toString() || '');
                 break;
-            case trackSections.SECONDS:
+            case TrackSections.SECONDS:
                 setTitle('Czas trwania');
                 setSectionValue(convertTimeToString(Number(value)));
                 break;
