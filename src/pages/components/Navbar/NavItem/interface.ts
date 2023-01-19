@@ -1,6 +1,6 @@
-import { sections } from "enums/SectionType";
+import { Sections } from "enums/SectionType";
 
 export interface NavItemProps {
     label: string;
-    pageId: sections;
+    pageId: Sections;
 }

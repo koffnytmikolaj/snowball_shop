@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 import { contactSections } from './constants';
-import img from 'assets/AboutUs/jpg/people-g5780dbbe7_1920.jpg';
+import img from 'assets/AboutUs/jpg/guitar.jpg';
 import ContactSection from './ContactSection';
 import style from './aboutUs.module.css';
 
@@ -9,15 +9,11 @@ export default function AboutUs() {
     const [show, setShow] = useState<boolean>(false);
     const contactHeaderClassNames = clsx(
         style['about-us__header'], 
-        show 
-            ? style['about-us__header--shown'] 
-            : style['about-us__header--hidden'],
+        show && style['about-us__header--shown'],
     );
     const imgClassNames = clsx(
         style['about-us__image'],
-        show
-            ? style['about-us__image--shown']
-            : style['about-us__image--hidden']
+        show && style['about-us__image--shown'],
     )
 
     useEffect(() => setShow(true), []);

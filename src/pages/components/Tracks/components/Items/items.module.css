@@ -4,8 +4,17 @@
     align-items: flex-end;
     width: 100%;
     padding: 8px;
+    height: 100%;
     position: relative;
     margin-left: 152px;
+}
+
+.items__loader {
+    margin-top: 200px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .items__grid {

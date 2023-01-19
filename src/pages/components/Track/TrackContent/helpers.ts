@@ -1,4 +1,4 @@
-import { ITime } from "interfaces/store";
+import { ITime } from "interfaces/StoreInterfaces";
 
 export const convertSeconds = (seconds: number): ITime => {
     const hours = Math.floor(seconds / 60 / 60);

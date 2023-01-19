@@ -23,7 +23,8 @@
 }
 
 .main-page__text > h1 {
-    color: #2A78DE
+    color: #2A78DE;
+    margin: 22px 0;
 }
 
 .main-page__buttons {
@@ -32,7 +33,7 @@
 }
 
 .main-page__buttons > button {
-    margin: 0 6px;
+    margin: 22px 6px;
 }
 
 .main-page__image {
@@ -51,4 +52,6 @@
 
 .main-page__image > img {
     width: 100%;
+    border-radius: 4px;
+    box-shadow: 8px 8px 32px;
 }

@@ -1,6 +1,21 @@
-import { IColor } from "interfaces/helpers";
+import { IColor } from "interfaces/global/helpers";
 
 const validateHexColor = (color: string): string => (color.length === 1 ? `0${color}` : color);
+
+const transformColorFromRGBAToObject = (rgba: string): IColor => {
+    const regexp: RegExp = /^rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(,\s*\d+\.?\d*)?\s*\)$/
+    if (!regexp.test(rgba)) throw new Error('Invalid RGBA!');
+    const rgbaValues: string[] = rgba.slice(rgba.indexOf('(') + 1, rgba.indexOf(')')).split(',')
+    const [red, green, blue, opacity] = rgbaValues;
+    return {
+        red: Number(red), 
+        green: Number(green), 
+        blue: Number(blue),
+        opacity: opacity ? Number(opacity) : undefined,
+    };
+}
+
+// ------------------------------- EXPORTED -------------------------------
 
 export const transformColorFromHexToObject = (colorString: string): IColor => {
   if (colorString[0] !== '#' || (colorString.length !== 7 && colorString.length !== 4))
@@ -17,19 +32,6 @@ export const transformColorFromObjectToRGBA = (color: IColor, opacity: number = 
   const { red, green, blue } = color;
   return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 };
-
-const transformColorFromRGBAToObject = (rgba: string): IColor => {
-    const regexp: RegExp = /^rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(,\s*\d+\.?\d*)?\s*\)$/
-    if (!regexp.test(rgba)) throw new Error('Invalid RGBA!');
-    const rgbaValues: string[] = rgba.slice(rgba.indexOf('(') + 1, rgba.indexOf(')')).split(',')
-    const [red, green, blue, opacity] = rgbaValues;
-    return {
-        red: Number(red), 
-        green: Number(green), 
-        blue: Number(blue),
-        opacity: opacity ? Number(opacity) : undefined,
-    };
-}
 
 export const transformColorFromRGBAToHex = (rgba: string) => {
     const color = transformColorFromRGBAToObject(rgba);

@@ -1,5 +1,5 @@
-export enum searchParams {
+export enum SearchParams {
     SEARCH_TEXT = 'searchText',
     REVERSE = 'reverse',
-    ORDER_BY = 'orderBy'
+    ORDER_BY = 'orderBy',
 }

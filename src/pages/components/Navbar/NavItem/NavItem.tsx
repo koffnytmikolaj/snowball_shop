@@ -8,9 +8,9 @@ import MusicNoteSharpIcon from '@mui/icons-material/MusicNoteSharp';
 
 export default function NavItem(props: NavItemProps) {
     const { pageId, label } = props;
-    const { location } = useAppContext();
+    const { section1 } = useAppContext();
     const navigate = useNavigate();
-    const active: boolean = pageId === location.section1;
+    const active: boolean = pageId === section1;
     const buttonClassNames: string = clsx(style.nav_button, active && style['nav_button--selected']);
 
     const changeSection = useCallback(() => {

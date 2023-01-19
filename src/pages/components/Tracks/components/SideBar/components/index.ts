@@ -1,3 +1,3 @@
-import ComposersList from "./ComposersList";
+import Composers from "./Composers";
 import Filters from "./Filters";
-export { ComposersList, Filters }
+export { Composers, Filters }

@@ -1,5 +1,5 @@
-import { BoxProps } from 'interfaces/components';
-import clsx from 'clsx';
+import { BoxProps } from 'interfaces/global/components';
+import { clsx } from 'clsx';
 import style from './box.module.css';
 
 export default function Box(props: BoxProps) {

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 import { clsx } from "clsx";
 import { trackSections } from "enums/store";
-import { ITrack, ITrackSection } from "interfaces/store";
+import { ITrack, ITrackSection } from "interfaces/TrackInterfaces";
 import { getImageForTrack, getTrackById } from "store/store";
 import TrackContent from "./TrackContent";
 import style from './track.module.css';
@@ -17,7 +17,7 @@ export default function Track() {
         {section: trackSections.MOVEMENT, value: track?.movement},
         {section: trackSections.ENSEMBLE, value: track?.ensemble},
         {section: trackSections.SECONDS, value: track?.seconds},
-    ]
+    ];
 
     const contactHeaderClassNames = clsx(
         style.track__header, 
@@ -38,7 +38,9 @@ export default function Track() {
         run();
     }, []);
 
-    useEffect(() => setShow(true), []);
+    useEffect(() => {
+        image && setShow(true)
+    }, [image]);
 
     return (
         <div className={style.track}>

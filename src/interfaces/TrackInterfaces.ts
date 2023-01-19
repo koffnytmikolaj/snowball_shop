@@ -1,9 +1,5 @@
-import { Filters, trackSections } from "enums/store";
-import { TrackSectionType } from "types/Tracks";
-
-export interface IDatabase {
-    tracks: ITrack[];
-}
+import { TrackSectionType } from "types/TrackTypes";
+import { trackSections } from "enums/store";
 
 export interface ITrack {
     [trackSections.ID]: number;
@@ -20,17 +16,4 @@ export interface ITrack {
 export interface ITrackSection {
     section: trackSections;
     value?: TrackSectionType;
-}
-
-export interface IGetTracksParameters {
-    orderBy?: Filters;
-    pageNumber?: number;
-    reverse?: boolean;
-    searchText?: string;
-}
-
-export interface ITime {
-    hours: string;
-    minutes: string;
-    seconds: string;
 }

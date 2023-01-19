@@ -1,25 +1,29 @@
 import { useCallback } from "react";
 import { useLocation, useNavigate } from 'react-router';
-import { sections } from "enums/SectionType";
+import { Sections } from "enums/SectionType";
 import { useAppContext } from "providers/app/app.providers";
+import { PaginationProps } from "./interface";
 import { Pagination as PaginationMui } from "@mui/material";
 
-interface IPagination {
-  count: number;
-}
-
-export default function Pagination(props: IPagination) {
-    const { count } = props;
-    const { location } = useAppContext();
+export default function Pagination(props: PaginationProps) {
+    const { count, isPageLoading } = props;
+    const { section2, section3 } = useAppContext();
     const currentLocation = useLocation();
     const navigate = useNavigate();
 
     const onChange = useCallback(
       (_: React.ChangeEvent<unknown>, number: number) => {
-        navigate(`${sections.TRACKS}/${location.section2}/${number}${currentLocation.search}`);
+        navigate(`${Sections.TRACKS}/${section2}/${number}${currentLocation.search}`);
       },
-      [currentLocation, location, navigate],
+      [currentLocation, section2, navigate],
     );
     
-    return <PaginationMui count={count} onChange={onChange} page={location.section3} />
+    return (
+      <PaginationMui 
+        count={count} 
+        disabled={isPageLoading}
+        page={section3} 
+        onChange={onChange} 
+      />
+    );
 }

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ButtonVariants } from "enums/Button";
+import { ButtonVariants } from "enums/ButtonEnums";
 
 export interface BoxProps {
     children: ReactNode;
@@ -11,6 +11,7 @@ export interface ButtonProps {
     children: JSX.Element;
     className?: string;
     color?: string;
+    disabled?: boolean;
     variant?: ButtonVariants;
     onClick?: () => void;
 }

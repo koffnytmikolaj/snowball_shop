@@ -1,12 +1,19 @@
 import { useCallback, useState } from 'react';
 import { clsx } from 'clsx';
 import { transformColorFromHexToRGBA } from 'helpers/colorHelpers';
-import { ButtonProps } from 'interfaces/components';
-import { ButtonVariants } from 'enums/Button';
+import { ButtonProps } from 'interfaces/global/components';
+import { ButtonVariants } from 'enums/ButtonEnums';
 import style from './button.module.css'
 
 export default function Button(props: ButtonProps) {
-    const { children, className, color = '#633BF5', variant = ButtonVariants.FILLED, onClick } = props;
+    const { 
+        children, 
+        className, 
+        color = '#633BF5',
+        disabled = false,
+        variant = ButtonVariants.FILLED, 
+        onClick 
+    } = props;
     const [clicked, setClicked] = useState<boolean>(false);
     const [hovered, setHovered] = useState<boolean>(false);
     const buttonClassName = clsx(style.button, className);
@@ -31,8 +38,8 @@ export default function Button(props: ButtonProps) {
 
     const theme = {
         button: {
-            borderColor: color,
-            color: variant === ButtonVariants.FILLED ? '#FFF' : color,
+            borderColor: disabled ? '#888' : color,
+            color: disabled ? '#888' : variant === ButtonVariants.FILLED ? '#FFF' : color,
             backgroundColor: getBackgroundColor(),
         },
     };
@@ -58,7 +65,8 @@ export default function Button(props: ButtonProps) {
             onMouseUp={handleMouseUp} 
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={buttonClassName} 
+            className={buttonClassName}
+            disabled={disabled}
             style={theme.button}
         >
             {children}

@@ -1,0 +1,46 @@
+.composer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 764px;
+    min-height: 764px;
+    max-height: 764px;
+}
+
+.composer__image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 10;
+    background-color: white;
+    width: 480px;
+    padding: 16px;
+    height: 100%;
+}
+
+.composer__img {
+    width: 100%;
+    height: min-content;
+    cursor: pointer;
+    transition: box-shadow 0.25s;
+}
+
+.composer__img:hover {
+    box-shadow: 8px 8px 32px;
+}
+
+.composer__text {
+    padding: 16px;
+    width: 480px;
+    transition: transform 0.33s;
+    transform: translate(-518px, 0);
+}
+
+.composer__text--shown, .composer__text:hover {
+    transform: translate(0, 0);
+}
+
+.composer__text > p:first-child {
+    font-weight: 500;
+}

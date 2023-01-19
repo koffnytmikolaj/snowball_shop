@@ -6,9 +6,7 @@ export default function ContactSection(props: ContactSectionProps) {
     const { id, headerText, email, phoneNumber, show } = props;
     const sectionClassNames = clsx(
         style['contact-section'], 
-        show 
-            ? style['contact-section--shown'] 
-            : style['contact-section--hidden'],
+        show && style['contact-section--shown'],
     );
     const animationDelay = id * 0.2 + 1;
 

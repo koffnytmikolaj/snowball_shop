@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import ComposerButton from './ComposerButton/ComposerButton';
-import style from './categoryList.module.css';
 import { getAllComposers } from 'store/store';
+import { ComposersProps } from './interface';
+import ComposerButton from './ComposerButton';
+import style from './composers.module.css';
 
-export default function ComposersList() {
+export default function Composers(props: ComposersProps) {
+    const { isPageLoading } = props;
     const [showContent, setShowContent] = useState<boolean>(false);
     const [composers, setComposers] = useState<string[]>([]);
 
@@ -30,8 +32,9 @@ export default function ComposersList() {
             <h3>Kompozytorzy</h3>
             {composers.map(composer => 
                 <ComposerButton 
-                    key={composer}  
+                    key={composer}
                     composerName={composer}
+                    disabled={isPageLoading}
                 />
             )}
         </div>

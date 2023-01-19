@@ -1,7 +1,7 @@
 import { KeyboardEvent, MutableRefObject, useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router";
-import { ButtonVariants } from "enums/Button";
-import { searchParams } from 'enums/search';
+import { ButtonVariants } from "enums/ButtonEnums";
+import { SearchParams } from 'enums/SearchEnums';
 import { typeSearchPath } from 'helpers/searchHelpers';
 import { useAppContext } from "providers/app/app.providers";
 import { Pagination } from "..";
@@ -11,30 +11,29 @@ import style from './searchBar.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar(props: SearchBarProps) {
-    const { location } = useAppContext();
-    const { numberOfPages } = props;
+    const { searchParams: search, section1, section2 } = useAppContext();
+    const { isPageLoading, numberOfPages } = props;
     const navigate = useNavigate();
     const inputReference = useRef() as MutableRefObject<HTMLInputElement>;
-    const composer: string = location.section2 || '';
+    const composer: string = section2 || '';
     const composerName: string = `${composer.charAt(0).toUpperCase()}${composer.slice(1)}`;
 
     const searchPhrase = useCallback(() => {
-        const { section1, section2 } = location;
         const path: string = `${section1}/${section2}/1`;
         const newPath: string = typeSearchPath(
-            searchParams.SEARCH_TEXT, 
-            location.searchParams, 
+            SearchParams.SEARCH_TEXT, 
+            search, 
             inputReference.current.value.trim(), 
             path
         );
         navigate(newPath);
-    }, [location, navigate]);
+    }, [search, section1, section2, navigate]);
 
     useEffect(() => {
         inputReference.current &&
         numberOfPages >= 0 &&
-            (inputReference.current.value = location.searchParams.searchText);
-    }, [location, numberOfPages])
+            (inputReference.current.value = search.searchText);
+    }, [search, numberOfPages])
 
     const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
         e.key === 'Enter' && searchPhrase();
@@ -49,11 +48,17 @@ export default function SearchBar(props: SearchBarProps) {
                 className={style['search-bar__input']} 
                 placeholder="Szukaj" 
                 onKeyDown={handleKeyDown}
+                disabled={isPageLoading}
             />
-            <Button onClick={searchPhrase} className={style['search-bar__icon']} variant={ButtonVariants.OUTLINED}>
+            <Button 
+                onClick={searchPhrase} 
+                className={style['search-bar__icon']} 
+                variant={ButtonVariants.OUTLINED}
+                disabled={isPageLoading}
+            >
                 <SearchIcon />
             </Button>
-            <Pagination count={numberOfPages} />
+            <Pagination count={numberOfPages} isPageLoading={isPageLoading} />
         </div>
     )
 }

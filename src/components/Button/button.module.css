@@ -19,3 +19,7 @@
     text-align: center;
     transition: background-color 0.25s;
 }
+
+.button:disabled {
+    cursor: default;
+}
